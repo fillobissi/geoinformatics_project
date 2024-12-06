@@ -1,3 +1,1 @@
 # geoinformatics_project
-
-***ciao
