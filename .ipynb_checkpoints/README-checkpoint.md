@@ -1,1 +1,0 @@
-# geoinformatics_project
