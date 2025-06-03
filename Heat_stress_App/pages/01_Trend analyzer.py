@@ -24,7 +24,7 @@ def load_data():
     #     gdown.download(url, output, quiet=False)
 
     # === [ATTIVO] PERCORSO LOCALE ===
-    output = "data/heatstress_all_timestamps_year_reduced.csv"
+    output = "Heat_stress_App/data/heatstress_all_timestamps_year_reduced.csv"
 
     # === CARICAMENTO DEL FILE ===
     df = pd.read_csv(output)
