@@ -10,3 +10,7 @@ plotly
 netCDF4
 h5netcdf
 gdown
+seaborn
+pyproj
+Pillow
+requests
