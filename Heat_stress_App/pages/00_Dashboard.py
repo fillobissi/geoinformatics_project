@@ -22,38 +22,30 @@ import os
 import gdown
 import urllib.request
 
-
 # --- CONFIG PAGINA ---
 st.set_page_config(layout="wide")
 st.title("📊 Dashboard")
 st.markdown("#### From 1981 to 2023 everyday heat stress indices and climatological indicators")
 
-# --- 1. CARICAMENTO DATASET ---
-
-
-import streamlit as st
-import xarray as xr
-import requests
-from pathlib import Path
-
+# === Funzione per caricare in modo sicuro i dataset ===
 def load_nc_datasets():
     try:
-        st.info("📂 Caricamento NetCDF da risorse locali...")
+        st.info("📂 Caricamento NetCDF dai file della repository...")
 
-        # === Percorsi locali completi dei file NetCDF
-        temp_path = r"data/2m_air_temp_2023-04-01_2023-09-30.nc"
-        dew_path  = r"data/2m_dew_point_temp_2023-04-01_2023-09-30.nc"
+        # Percorsi relativi compatibili con Streamlit Cloud
+        temp_path = os.path.join("Heat_stress_App", "data", "2m_air_temp_2023-04-01_2023-09-30.nc")
+        dew_path  = os.path.join("Heat_stress_App", "data", "2m_dew_point_temp_2023-04-01_2023-09-30.nc")
 
-        # === Verifica esistenza dei file
+        # Controllo esistenza
         if not os.path.exists(temp_path) or not os.path.exists(dew_path):
-            st.error("❌ Uno o entrambi i file non sono stati trovati. Controlla i percorsi.")
+            st.error("❌ Uno o entrambi i file .nc non sono stati trovati nella directory 'data/'.")
             st.stop()
 
-        # === Apertura dei dataset
-        ds_temp = xr.open_dataset(temp_path, engine="netcdf4")
-        ds_dew = xr.open_dataset(dew_path, engine="netcdf4")
+        # Caricamento
+        ds_temp = xr.open_dataset(temp_path)
+        ds_dew = xr.open_dataset(dew_path)
 
-        st.success("✅ File NetCDF caricati correttamente da disco locale.")
+        st.success("✅ File NetCDF caricati correttamente.")
         return ds_temp, ds_dew
 
     except Exception as e:
@@ -61,8 +53,7 @@ def load_nc_datasets():
         st.exception(e)
         st.stop()
 
-
-# --- 1. LOAD DATASET ---
+# --- CARICAMENTO DATASET ---
 dataset3, dataset2 = load_nc_datasets()
 
 # --- 2. SELEZIONE DATA ---
