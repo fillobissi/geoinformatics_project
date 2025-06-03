@@ -27,8 +27,7 @@ An interactive web application to explore spatial and temporal patterns of heat 
 
 ### 🚀 Link to the App
 
-👉 [Launch the App](https://your-custom-url.streamlit.app)  
-<sub>(Replace with your actual Streamlit Cloud URL)</sub>
+👉 [Launch the App](https://heatstressapp.streamlit.app)  
 
 ### 🛠 Built With
 
