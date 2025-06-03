@@ -23,7 +23,7 @@ st.write("THIS IS A DEMO VERSION OF THE APP AND THE AVAILABLE DATES RANGE FROM 2
 z_exaggeration = 0.05
 
 # === Caricamento dati ===
-xr.open_dataset(os.path.join("Heat_stress_App", "data", "2m_air_temp_2023-04-01_2023-09-30.nc"))
+ds = xr.open_dataset("Heat_stress_App/data/2m_air_temp_2023-04-01_2023-09-30.nc")
 
 
 # === Slider temporale compatibile e formattato ===
