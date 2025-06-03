@@ -11,6 +11,7 @@ from pyproj import CRS, Transformer
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import matplotlib.colors as mcolors
+import os
 
 st.set_page_config(page_title="Heat Stress", page_icon="🏠", layout="wide")
 st.title("☀️ Welcome in Heat Stress!")
@@ -22,7 +23,8 @@ st.write("THIS IS A DEMO VERSION OF THE APP AND THE AVAILABLE DATES RANGE FROM 2
 z_exaggeration = 0.05
 
 # === Caricamento dati ===
-ds = xr.open_dataset(r"data/2m_air_temp_2023-04-01_2023-09-30.nc")
+xr.open_dataset(os.path.join("Heat_stress_App", "data", "2m_air_temp_2023-04-01_2023-09-30.nc"))
+
 
 # === Slider temporale compatibile e formattato ===
 time_values = [pd.to_datetime(t).to_pydatetime() for t in ds["T_2M"].time.values]
