@@ -9,4 +9,3 @@ contextily
 plotly
 netCDF4
 h5netcdf
-os
