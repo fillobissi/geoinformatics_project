@@ -23,15 +23,20 @@ st.write("THIS IS A DEMO VERSION OF THE APP AND THE AVAILABLE DATES RANGE FROM 2
 z_exaggeration = 0.05
 
 # === Caricamento dati ===
-ds = xr.open_dataset("Heat_stress_App/data/2m_air_temp_2023-04-01_2023-09-30.nc")
+dataset_path = os.path.join("Heat_stress_App", "data", "2m_air_temp_2023-04-01_2023-09-30.nc")
 
+try:
+    ds = xr.open_dataset(dataset_path)
 
-# === Slider temporale compatibile e formattato ===
-time_values = [pd.to_datetime(t).to_pydatetime() for t in ds["T_2M"].time.values]
-selected_time = st.slider("**Select a date**", min_value=time_values[0], max_value=time_values[-1], value=time_values[0])
-st.markdown(f"**Selected date:** {selected_time.strftime('%#d %b %y')}")
-st.markdown("Pan with your mouse to **move the map**!")
-time_index = time_values.index(selected_time)
+    time_values = [pd.to_datetime(t).to_pydatetime() for t in ds["T_2M"].time.values]
+    selected_time = st.slider("**Select a date**", min_value=time_values[0], max_value=time_values[-1], value=time_values[0])
+    st.markdown(f"**Selected date:** {selected_time.strftime('%#d %b %y')}")
+    st.markdown("Pan with your mouse to **move the map**!")
+    time_index = time_values.index(selected_time)
+
+except Exception as e:
+    st.error(f"❌ Failed to load dataset: {e}")
+    st.stop()
 
 time0 = selected_time
 temp_data = ds["T_2M"].sel(time=selected_time)
