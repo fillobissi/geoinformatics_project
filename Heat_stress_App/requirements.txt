@@ -6,3 +6,4 @@ xarray
 geopandas
 rioxarray
 contextily
+plotly
